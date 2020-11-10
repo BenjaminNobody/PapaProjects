@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{A152562D-2C56-49F2-A20C-BF743D1CC6A5}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pacman/Controller.cs">
+    <Files>
+      <File FileName="Pacman/Form1.cs" Line="47" Column="24" />
+      <File FileName="Pacman/Maze.cs" Line="37" Column="34" />
+      <File FileName="Pacman/Creatures.cs" Line="18" Column="37" />
+      <File FileName="Pacman/Pacman.cs" Line="18" Column="1" />
+      <File FileName="Pacman/Ghosts.cs" Line="27" Column="1" />
+      <File FileName="Pacman/Blinky.cs" Line="22" Column="1" />
+      <File FileName="Pacman/Pinky.cs" Line="18" Column="1" />
+      <File FileName="Pacman/Inky.cs" Line="14" Column="10" />
+      <File FileName="Pacman/Clyde.cs" Line="17" Column="10" />
+      <File FileName="Pacman/Controller.cs" Line="21" Column="45" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Pacman" expanded="True">
+            <Node name="Pacman" expanded="True">
+              <Node name="Controller.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="Pacman" expanded="True" selected="True">
+            <Node name="Pacman" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Pacman PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

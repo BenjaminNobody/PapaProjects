@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{A5A29250-5621-4AC9-8287-4F3DB75F604F}|Default">
+  <MonoDevelop.Ide.ItemProperties.Assignment2__TheFinalBattle PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assignment2_TheFinalBattle/Form1.cs">
+    <Files>
+      <File FileName="Assignment2_TheFinalBattle/Form1.cs" Line="1" Column="1" />
+      <File FileName="Assignment2_TheFinalBattle/Program.cs" Line="23" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Assignment2_TheFinalBattle" expanded="True">
+            <Node name="Assignment2_TheFinalBattle" expanded="True">
+              <Node name="Properties" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
