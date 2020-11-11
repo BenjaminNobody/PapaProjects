@@ -146,7 +146,8 @@ namespace Pacman
         public static int CELLSIZE1 => CELLSIZE;
 
         public int NKibbles { get => nKibbles; set => nKibbles = value; }
-        public Bitmap Wall { get => wall; set => wall = value; }
         public Bitmap Kibble { get => kibble; set => kibble = value; }
+        public string CurrentMap { get => currentMap; set => currentMap = value; }
+        public Bitmap Blank { get => blank; set => blank = value; }
     }   
 }

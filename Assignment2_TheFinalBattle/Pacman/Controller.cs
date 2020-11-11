@@ -17,14 +17,10 @@ namespace Pacman
         private Pacman pacman;
         private GhostsManager allghosts;
         private Maze maze;
-        private int score;
-        private int lives;
         private int cherries;
 
         public Controller(Maze maze, Random random)
         {
-            lives = 2;
-            
             this.maze = maze;
             pacman = new Pacman(maze);
             allghosts = new GhostsManager(maze, random);
@@ -34,10 +30,10 @@ namespace Pacman
         public void PlayGame()
         {
             maze.Draw();
+            pacman.MovePacman();
             pacman.Draw();
+            allghosts.Move(maze);
             allghosts.Draw();
-            pacman.Move();
-
                 //pacman.Move(score);
                 //foreach (Ghost ghost in ghosts)
                 //{
@@ -45,7 +41,14 @@ namespace Pacman
                 //}
         }
 
-        public bool WinGame()
+        public int CountingScore(int score)
+        {
+            score = pacman.EatingKibble(score, maze);
+
+            return score;
+        }
+
+        public bool WinGame(int score)
         {
             bool wingame = false;
 
@@ -59,7 +62,7 @@ namespace Pacman
 
 
 
-        public bool LooseGame()
+        public bool LooseGame(int lives)
         {
             bool loosegame = false;
 
@@ -74,7 +77,7 @@ namespace Pacman
         public void ChangeDirections(Directions directions)
         {
             pacman.Direction = directions;
-            //allghosts.ChangeDirections();
+            
         }
     }
 }

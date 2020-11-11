@@ -17,6 +17,7 @@ namespace Pacman
             images.Add(Properties.Resources.pacman_right_1);        //image open mouth
             images.Add(Properties.Resources.pacman_right_2);        //image closed mouth
             direction = Directions.right;
+            currentdirection = direction;
             position = new Point(15, 22);
             mouthopen = true;
         }
@@ -26,33 +27,15 @@ namespace Pacman
             maze.Rows[position.Y].Cells[position.X].Value = images[0];
         }
 
-        public override void Move()
+        public void MovePacman()
         {
-            if (CheckNoWallHit())
-            { 
+            // so he is only changing the pictures when the direction gets changed
+            if (currentdirection != direction)
+            {
                 SetPicturesDirections();
-                switch (direction)
-                {
-                    case Directions.up:
-                        position.Y = position.Y - 1;
-                        break;
-
-                    case Directions.down:
-                        position.Y = position.Y + 1;
-                        break;
-
-                    case Directions.left:
-                        position.X = position.X - 1;
-                        break;
-
-                    case Directions.right:
-                        position.X = position.X + 1;
-                        break;
-
-                    default:
-                        break;
-                }
             }
+            Move();
+            currentdirection = direction;
             MouthMove();
         }
 
@@ -85,13 +68,14 @@ namespace Pacman
 
 
 
-        public int EatingKibble(int score, Pacman pacman)
+        public int EatingKibble(int score, Maze maze)
         {
-            if (maze.Rows[pacman.position.X].Cells[pacman.position.Y].Value == maze.Kibble)
+            if (maze.CurrentMap.Substring((position.Y * 30 + position.X), 1) == "k")
             {
                 score = score + 10;
+                maze.CurrentMap.Substring((position.Y * 30 + position.X), 1).Replace("k", "b");
+                maze.Rows[position.Y].Cells[position.X].Value = maze.Blank;
             }
-
             return score;
         }
     }

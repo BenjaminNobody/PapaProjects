@@ -9,7 +9,7 @@ namespace Pacman
         protected Directions direction;
         protected List<Bitmap> images;
         protected Maze maze;
-        protected bool freetogo;
+        protected Directions currentdirection;
 
         public Creature(Maze maze)
         {
@@ -19,34 +19,65 @@ namespace Pacman
 
         public abstract void Draw();
 
-        public abstract void Move();
+        public void Move()
+        {
+
+            if (CheckNoWallHit())
+            {
+                switch (direction)
+                {
+                    case Directions.up:
+                        position.Y = position.Y - 1;
+                        break;
+
+                    case Directions.down:
+                        position.Y = position.Y + 1;
+                        break;
+
+                    case Directions.left:
+                        position.X = position.X - 1;
+                        break;
+
+                    case Directions.right:
+                        position.X = position.X + 1;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
 
         public bool CheckNoWallHit()
         {
-            int CheckX = position.X;
             int CheckY = position.Y;
+            int CheckX = position.X;
+
+            //CheckFieldInfront(CheckY, CheckX);
 
             switch (direction)
             {
                 case Directions.up:
-                    CheckY++;
-                    break;
-                case Directions.left:
-                    CheckX++;
-                    break;
-                case Directions.down:
                     CheckY--;
                     break;
-                case Directions.right:
+                case Directions.left:
                     CheckX--;
+                    break;
+                case Directions.down:
+                    CheckY++;
+                    break;
+                case Directions.right:
+                    CheckX++;
                     break;
                 default:
                     break;
             }
 
-            freetogo = true;
+            bool freetogo = true;
 
-            if (maze.Rows[CheckX].Cells[CheckY].Value == maze.Wall)
+            int i = CheckY * 30 + CheckX;
+
+            if (maze.CurrentMap.Substring(i, 1) == "w")
             {
                 freetogo = false;
             }
@@ -54,16 +85,31 @@ namespace Pacman
             return freetogo;
         }
 
+        //public void CheckFieldInfront(int CheckY, int CheckX)
+        //{
+        //    switch (direction)
+        //    {
+        //        case Directions.up:
+        //            CheckY--;
+        //            break;
+        //        case Directions.left:
+        //            CheckX--;
+        //            break;
+        //        case Directions.down:
+        //            CheckY++;
+        //            break;
+        //        case Directions.right:
+        //            CheckX++;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
         public Directions Direction
         {
             get => direction;
-            set
-            {
-                if (freetogo)
-                {
-                    direction = value;
-                }
-            }
+            set => direction = value;
         }
 
         public List<Bitmap> Images { get => images; set => images = value; }
