@@ -18,10 +18,13 @@ namespace Pacman
         private GhostsManager allghosts;
         private Maze maze;
         private int cherries;
+        private int lives;
+        private int score;
 
         public Controller(Maze maze, Random random)
         {
             this.maze = maze;
+            lives = 2;
             pacman = new Pacman(maze);
             allghosts = new GhostsManager(maze, random);
 
@@ -32,27 +35,36 @@ namespace Pacman
             maze.Draw();
             pacman.MovePacman();
             pacman.Draw();
+            CountingScore();
             allghosts.Move(maze);
             allghosts.Draw();
-                //pacman.Move(score);
-                //foreach (Ghost ghost in ghosts)
-                //{
-                //    ghost.Move();
-                //}
+
+            bool checkcollision = false;
+            
+            //if (allghosts.CheckCollisionAllghosts(checkcollision))
+            //{
+            //    lives--;
+            //}
+
         }
 
-        public int CountingScore(int score)
+        //public int CountingScore()
+        //{
+        //    int currentscore = pacman.EatingKibble(score, maze);
+
+        //    return currentscore;
+        //}
+        public void CountingScore()
         {
             score = pacman.EatingKibble(score, maze);
-
-            return score;
         }
 
-        public bool WinGame(int score)
+
+        public bool WinGame()
         {
             bool wingame = false;
 
-            if (maze.NKibbles == score)
+            if (maze.NKibbles <= 260)
             {
                 wingame = true;
             }
@@ -62,7 +74,7 @@ namespace Pacman
 
 
 
-        public bool LooseGame(int lives)
+        public bool LooseGame()
         {
             bool loosegame = false;
 
@@ -79,5 +91,9 @@ namespace Pacman
             pacman.Direction = directions;
             
         }
+
+
+        public int Score { get => score; set => score = value; }
+        public int Lives { get => lives; set => lives = value; }
     }
 }

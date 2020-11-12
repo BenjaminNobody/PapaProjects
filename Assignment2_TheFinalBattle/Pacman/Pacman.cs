@@ -34,7 +34,12 @@ namespace Pacman
             {
                 SetPicturesDirections();
             }
-            Move();
+
+            if (CheckNoWallHit())
+            {
+                Move();
+            }
+            
             currentdirection = direction;
             MouthMove();
         }
@@ -66,15 +71,22 @@ namespace Pacman
 
         //}
 
+        private void SettingPacmanpositononMaze()
+        {
 
+        }
 
         public int EatingKibble(int score, Maze maze)
         {
-            if (maze.CurrentMap.Substring((position.Y * 30 + position.X), 1) == "k")
+            int pacpos = position.Y * 30 + position.X;
+
+            if (maze.CurrentMap.Substring((pacpos), 1) == "k")
             {
                 score = score + 10;
-                maze.CurrentMap.Substring((position.Y * 30 + position.X), 1).Replace("k", "b");
-                maze.Rows[position.Y].Cells[position.X].Value = maze.Blank;
+                //maze.CurrentMap.Substring((position.Y * 30 + position.X), 1).Replace("k", "b");
+                maze.CurrentMap = $"{maze.CurrentMap.Substring(0,pacpos)}b{maze.CurrentMap.Substring(pacpos+1)}";
+                //maze.Rows[position.Y].Cells[position.X].Value = maze.Blank;
+                maze.NKibbles--;
             }
             return score;
         }

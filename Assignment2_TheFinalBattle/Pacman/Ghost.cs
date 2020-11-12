@@ -52,6 +52,15 @@ namespace Pacman
         //    images[0] = images[1];
         //}
 
+        public bool CheckCollisionPacman(bool collision)
+        {
+            if (true)
+            {
+
+            }
+            return collision;
+        }
+
         public void SetDirections(Maze maze)
         {
             int checkfrontY = position.Y;
@@ -61,7 +70,7 @@ namespace Pacman
             int checkrightY = position.Y;
             int checkrightX = position.X;
 
-            switch (direction)
+            switch (direction)                                                     // set the positions that should be checked
             {
                 case Directions.up:
                     checkfrontY--;
@@ -74,7 +83,7 @@ namespace Pacman
                     checkrightY--;
                     break;
                 case Directions.down:
-                     checkfrontY++;
+                    checkfrontY++;
                     checkleftX++;
                     checkrightX--;
                     break;
@@ -91,122 +100,118 @@ namespace Pacman
             int left = checkleftY * 30 + checkleftX;
             int right = checkrightY * 30 + checkrightX;
 
-            if (maze.CurrentMap.Substring(front, 1) != "w")
-            {
-                if (maze.CurrentMap.Substring(left, 1) != "w")
-                {
-                   if (maze.CurrentMap.Substring(right, 1) != "w")
-                    {
-                        int directionselector = random.Next(2);
+            int directionselector = random.Next(3);
 
+            if (maze.CurrentMap.Substring(front, 1) != "w")                     // when straight way is free
+            {
+                if (maze.CurrentMap.Substring(left, 1) != "w")                  // when left is free as well
+                {
+                    if (maze.CurrentMap.Substring(right, 1) != "w")             // when there is 3 options for going (straigt/left/right)
+                    {
                         switch (directionselector)
                         {
-                            case 0:                     // go left
-                                switch (direction)
-                                {
-                                    case Directions.up:
-                                        direction = Directions.left;
-                                        break;
-                                    case Directions.left:
-                                        direction = Directions.down;
-                                        break;
-                                    case Directions.down:
-                                        direction = Directions.right;
-                                        break;
-                                    case Directions.right:
-                                        direction = Directions.up;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                         
+                            case 0:                                             // go left
+                                SetDirectionLeft();
+
                                 break;
-                            case 1:                     // go right
-                                switch (direction)
-                                {
-                                    case Directions.up:
-                                        direction = Directions.right;
-                                        break;
-                                    case Directions.left:
-                                        direction = Directions.up;
-                                        break;
-                                    case Directions.down:
-                                        direction = Directions.left;
-                                        break;
-                                    case Directions.right:
-                                        direction = Directions.down;
-                                        break;
-                                    default:
-                                        break;
-                                }
+                            case 1:                                             // go right
+                                SetDirectionsRight();
                                 break;
 
-                            default:
+                            default:                                            // default is always straight
                                 break;
                         }
                     }
-                    else
+                    else                                                        // when there is two options (straights/left)
                     {
-                        int directionselector = random.Next(2);
+                        directionselector = random.Next(2);                     // overriding cause we only need two options now
 
                         switch (directionselector)
                         {
-                            case 0:                     // go left
-                                switch (direction)
-                                {
-                                    case Directions.up:
-                                        direction = Directions.left;
-                                        break;
-                                    case Directions.left:
-                                        direction = Directions.down;
-                                        break;
-                                    case Directions.down:
-                                        direction = Directions.right;
-                                        break;
-                                    case Directions.right:
-                                        direction = Directions.up;
-                                        break;
-                                    default:
-                                        break;
-                                }
+                            case 0:                                             // go left
+                                SetDirectionLeft();
 
                                 break;
-                            
-                            default:
+
+                            default:                                            // default is always straight
                                 break;
                         }
                     }
                 }
+                                                                                // 1 option (straight) => dont change anything
             }
+            else                                                                // straight is blocked from a wall
+            {
+                if (maze.CurrentMap.Substring(left, 1) != "w")                  // when left is free
+                {
+                    if (maze.CurrentMap.Substring(right, 1) != "w")             // when right is free as well -> 2 options (left/right)
+                    {
+                        directionselector = random.Next(2);                     // overriding cause we only need two options now
 
+                        switch (directionselector)
+                        {
+                            case 0:                                             // go left
+                                SetDirectionLeft();
 
-        //    do
-        //    {
-        //        int directionselector = random.Next(3);
+                                break;
+                            case 1:                                             // go right
+                                SetDirectionsRight();
+                                break;                                          // no default cause straight is not an option
+                        }
+                    }
+                    else                                                        // when only left is an option -> 1 option (left)
+                    {
+                        SetDirectionLeft();                                     // go left
+                    }
 
-        //        switch (directionselector)
-        //        {
-        //            case 0:
-        //                direction = Directions.up;
-        //                break;
-        //            case 1:
-        //                direction = Directions.left;
-        //                break;
-        //            case 2:
-        //                direction = Directions.down;
-        //                break;
-        //            case 3:
-        //                direction = Directions.right;
-        //                break;
+                }
+                else                                                            // now only right is left -> 1 option (right)
+                {
+                    SetDirectionsRight();
+                }
+            }
+        }
 
-        //            default:
-        //                break;
-        //        }
+        private void SetDirectionLeft()                                         // go left
+        {
+            switch (direction)
+            {
+                case Directions.up:
+                    direction = Directions.left;
+                    break;
+                case Directions.left:
+                    direction = Directions.down;
+                    break;
+                case Directions.down:
+                    direction = Directions.right;
+                    break;
+                case Directions.right:
+                    direction = Directions.up;
+                    break;
+                default:
+                    break;
+            }
+        }
 
-        //    } while (((direction == Directions.left) && (currentdirection == Directions.right)) ||
-        //            ((direction == Directions.right) && (currentdirection == Directions.left)) ||
-        //            ((direction == Directions.up) && (currentdirection == Directions.down)) ||
-        //            ((direction == Directions.down) && (currentdirection == Directions.up)));
+        private void SetDirectionsRight()                                       // go right
+        {
+            switch (direction)                                          
+            {
+                case Directions.up:
+                    direction = Directions.right;
+                    break;
+                case Directions.left:
+                    direction = Directions.up;
+                    break;
+                case Directions.down:
+                    direction = Directions.left;
+                    break;
+                case Directions.right:
+                    direction = Directions.down;
+                    break;
+                default:
+                    break;
+            }
         }
         public string Name { get => name; set => name = value; }
     }

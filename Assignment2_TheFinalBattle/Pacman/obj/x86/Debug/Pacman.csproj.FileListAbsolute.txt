@@ -101,3 +101,6 @@ C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFina
 C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFinalBattle\Pacman\obj\x86\Debug\Pacman.csproj.CoreCompileInputs.cache
 C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFinalBattle\Pacman\obj\x86\Debug\Pacman.exe
 C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFinalBattle\Pacman\obj\x86\Debug\Pacman.pdb
+C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFinalBattle\Pacman\bin\Debug\System.ValueTuple.dll
+C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFinalBattle\Pacman\bin\Debug\System.ValueTuple.xml
+C:\Users\stumtp1\OneDrive - Otago Polytechnic\Progr2_Assign2\Assignment2_TheFinalBattle\Pacman\obj\x86\Debug\Pacman.csproj.CopyComplete

@@ -21,9 +21,6 @@ namespace Pacman
 
         public void Move()
         {
-
-            if (CheckNoWallHit())
-            {
                 switch (direction)
                 {
                     case Directions.up:
@@ -45,7 +42,6 @@ namespace Pacman
                     default:
                         break;
                 }
-            }
         }
 
         public bool CheckNoWallHit()
@@ -53,8 +49,40 @@ namespace Pacman
             int CheckY = position.Y;
             int CheckX = position.X;
 
-            //CheckFieldInfront(CheckY, CheckX);
+            (CheckY, CheckX) = CheckFieldInfront(CheckY, CheckX);
 
+            //switch (direction)
+            //{
+            //    case Directions.up:
+            //        CheckY--;
+            //        break;
+            //    case Directions.left:
+            //        CheckX--;
+            //        break;
+            //    case Directions.down:
+            //        CheckY++;
+            //        break;
+            //    case Directions.right:
+            //        CheckX++;
+            //        break;
+            //    default:
+            //        break;
+            //}
+
+            bool freetogo = true;
+
+            int i = CheckY * 30 + CheckX;
+
+            if (maze.CurrentMap.Substring(i, 1) == "w")
+            {
+                freetogo = false;
+            }
+
+            return freetogo;
+        }
+
+        public (int checky, int checkx) CheckFieldInfront(int CheckY, int CheckX)               // using tuple types
+        {
             switch (direction)
             {
                 case Directions.up:
@@ -72,39 +100,8 @@ namespace Pacman
                 default:
                     break;
             }
-
-            bool freetogo = true;
-
-            int i = CheckY * 30 + CheckX;
-
-            if (maze.CurrentMap.Substring(i, 1) == "w")
-            {
-                freetogo = false;
-            }
-
-            return freetogo;
+            return (CheckY, CheckX);
         }
-
-        //public void CheckFieldInfront(int CheckY, int CheckX)
-        //{
-        //    switch (direction)
-        //    {
-        //        case Directions.up:
-        //            CheckY--;
-        //            break;
-        //        case Directions.left:
-        //            CheckX--;
-        //            break;
-        //        case Directions.down:
-        //            CheckY++;
-        //            break;
-        //        case Directions.right:
-        //            CheckX++;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
 
         public Directions Direction
         {

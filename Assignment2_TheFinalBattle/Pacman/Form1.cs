@@ -18,9 +18,7 @@ namespace Pacman
         private Maze maze;
         private Random random;
         private Controller controller;
-        private Label scorelabel;
 
-        private int score;
         private int lives;
 
         public Form1()
@@ -40,37 +38,38 @@ namespace Pacman
 
             random = new Random();
 
-            scorelabel = new Label();
-            scorelabel.Visible = true;
-            scorelabel.Location = new Point(970, 850);
-            scorelabel.BackColor = Color.Black;
-            scorelabel.ForeColor = Color.Red;
-
             // important, need to add the maze object to the list of controls on the form
             Controls.Add(maze);
-            controller = new Controller(maze,random);
+            controller = new Controller(maze, random);
 
             // remember the Timer Enabled Property is set to false as a default
             timer1.Enabled = true;
-
-            lives = 2;
-            score = 0;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             controller.PlayGame();
-            scorelabel.Text = controller.CountingScore(score).ToString();
-            
-            if (controller.WinGame(score))
+
+            scorelabel.Text = $"score : {controller.Score.ToString()}";
+            livelabel.Text = $"lives : {controller.Lives.ToString()}";
+
+            if (controller.WinGame())
             {
-                MessageBox.Show($"Hell yeah mate you have done it. And I can tell you {score} points is one hell of a score");
+                timer1.Enabled = false;
+                MessageBox.Show($"Hell yeah mate you have done it. And I can tell, you have one hell of a score!! \r\n" +
+                    $"                              score\t:                        {controller.Score} points \r\n" +
+                    $"                              lives remaining\t:                         {controller.Lives}");
+
+                Application.Exit();
             }
 
-            if (controller.LooseGame(lives))
+            if (controller.LooseGame())
             {
+                timer1.Enabled = false;
                 MessageBox.Show($"How unlucky was that! What a bummer...but still you should have seen yourself! You were so close and a " +
-                    $"score of {score} points is still a damn good score");
+                    $"score of {controller.Score} points is still a damn good score");
+
+                Application.Exit();
             }
         }
 

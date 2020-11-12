@@ -32,16 +32,16 @@ namespace Pacman
         private void AddValues()
         {
             ghosts[0].Images[0] = Properties.Resources.blinky_up;
-            ghosts[0].Position = new Point(13,13);
+            ghosts[0].Position = new Point(12,13);
             ghosts[0].Name = "blinky";
             ghosts[1].Images[0] = Properties.Resources.pinky_up;
-            ghosts[1].Position = new Point(14, 13);
+            ghosts[1].Position = new Point(14, 12);
             ghosts[1].Name = "pinky";
             ghosts[2].Images[0] = Properties.Resources.inky_up;
-            ghosts[2].Position = new Point(15, 13);
+            ghosts[2].Position = new Point(15, 12);
             ghosts[2].Name = "inky";
             ghosts[3].Images[0] = Properties.Resources.clyde_up;
-            ghosts[3].Position = new Point(16, 13);
+            ghosts[3].Position = new Point(17, 13);
             ghosts[3].Name = "clyde";
         }
 
@@ -52,6 +52,16 @@ namespace Pacman
                 ghost.SetDirections(maze);
                 ghost.MoveGhost();
             }
+        }
+
+        public bool CheckCollisionAllghosts(bool collision)
+        {
+            foreach (Ghost ghost in ghosts)
+            {
+                ghost.CheckCollisionPacman(collision);
+            }
+
+            return collision;
         }
     }
 }
